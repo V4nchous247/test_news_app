@@ -1,0 +1,164 @@
+{
+    "articles": [
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Global Economy Updates",
+            "subTitle": "Key changes affecting the economy",
+            "category": "Экономика",
+            "allTimeViews": 1200,
+            "lastTreeDaysViews": 300
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Political Shakeup in Europe",
+            "subTitle": "What recent elections mean",
+            "category": "Политика",
+            "allTimeViews": 800,
+            "lastTreeDaysViews": 150
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "New Art Movements",
+            "subTitle": "A revival in classic styles",
+            "category": "Культура",
+            "allTimeViews": 950,
+            "lastTreeDaysViews": 280
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Championship Insights",
+            "subTitle": "Highlights from recent sports events",
+            "category": "Спорт",
+            "allTimeViews": 1400,
+            "lastTreeDaysViews": 400
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Innovations in Education",
+            "subTitle": "How technology is changing classrooms",
+            "category": "Общество",
+            "allTimeViews": 1100,
+            "lastTreeDaysViews": 290
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Breaking News Worldwide",
+            "subTitle": "Key events from around the globe",
+            "category": "В мире",
+            "allTimeViews": 1300,
+            "lastTreeDaysViews": 320
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Insights on Climate Change",
+            "subTitle": "The latest impacts and responses",
+            "category": "Происшествия",
+            "allTimeViews": 1000,
+            "lastTreeDaysViews": 200
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "The Future of Economy",
+            "subTitle": "Experts weigh in on upcoming trends",
+            "category": "Экономика",
+            "allTimeViews": 1600,
+            "lastTreeDaysViews": 450
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Political Shifts",
+            "subTitle": "New leaders and their agendas",
+            "category": "Политика",
+            "allTimeViews": 700,
+            "lastTreeDaysViews": 120
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Celebrating Local Arts",
+            "subTitle": "A spotlight on new artists",
+            "category": "Культура",
+            "allTimeViews": 850,
+            "lastTreeDaysViews": 250
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Tournament Recap",
+            "subTitle": "Results and highlights from matches",
+            "category": "Спорт",
+            "allTimeViews": 1550,
+            "lastTreeDaysViews": 350
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Social Innovations",
+            "subTitle": "Communities driving change",
+            "category": "Общество",
+            "allTimeViews": 900,
+            "lastTreeDaysViews": 260
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Global Updates",
+            "subTitle": "Significant events from different countries",
+            "category": "В мире",
+            "allTimeViews": 1350,
+            "lastTreeDaysViews": 280
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Environmental Disasters",
+            "subTitle": "Natural events impacting the world",
+            "category": "Происшествия",
+            "allTimeViews": 1250,
+            "lastTreeDaysViews": 330
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "New Economic Trends",
+            "subTitle": "Sectors on the rise",
+            "category": "Экономика",
+            "allTimeViews": 1700,
+            "lastTreeDaysViews": 420
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Policy Changes",
+            "subTitle": "Governments rethinking regulations",
+            "category": "Политика",
+            "allTimeViews": 780,
+            "lastTreeDaysViews": 140
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Art Festivals",
+            "subTitle": "An overview of upcoming events",
+            "category": "Культура",
+            "allTimeViews": 920,
+            "lastTreeDaysViews": 310
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Champions and Records",
+            "subTitle": "Highlighting top players",
+            "category": "Спорт",
+            "allTimeViews": 1420,
+            "lastTreeDaysViews": 390
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Community Support Systems",
+            "subTitle": "Improving local welfare",
+            "category": "Общество",
+            "allTimeViews": 1150,
+            "lastTreeDaysViews": 340
+        },
+        {
+            "imgUrl": "assets/images/channels4_profile.jpg",
+            "title": "Current World Issues",
+            "subTitle": "Recent developments around the globe",
+            "category": "В мире",
+            "allTimeViews": 1450,
+            "lastTreeDaysViews": 370
+        }
+    ]
+}
