@@ -15,12 +15,13 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
         await event.when(
           fetch: () async {
             String jsonString = await rootBundle.loadString('assets/strings/categories.json');
+
             final data = json.decode(jsonString);
             List<String> categories = List<String>.from(data['categories']);
+
             emit(_Loaded(categories: categories));
           },
         );
-        // add(const CategoriesEvent.fetch());
       },
     );
   }

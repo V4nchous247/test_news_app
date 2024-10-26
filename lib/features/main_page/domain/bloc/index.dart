@@ -1,1 +1,2 @@
-export './categories_bloc.dart';
+export 'categories/index.dart';
+export './articles/index.dart';

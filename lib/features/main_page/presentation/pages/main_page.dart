@@ -29,16 +29,19 @@ class _MainPageState extends State<MainPage> {
   final TextEditingController _searchController = TextEditingController();
 
   final CategoriesBloc _categoriesBloc = sl<CategoriesBloc>();
+  final ArticlesBloc _articlesBloc = sl<ArticlesBloc>();
 
   @override
   void initState() {
     _categoriesBloc.add(const CategoriesEvent.fetch());
+    _articlesBloc.add(const ArticlesEvent.fetch());
     super.initState();
   }
 
   @override
   void dispose() {
     _categoriesBloc.close();
+    _articlesBloc.close();
     _searchController.dispose();
     super.dispose();
   }
@@ -83,52 +86,21 @@ class _MainPageState extends State<MainPage> {
                     error: () => const Text('ERROR'),
                   ),
                 ),
-                // child: FutureBuilder(
-                //   future: loadCategories(),
-                //   builder: (context, snapshot) {
-                //     if (snapshot.connectionState == ConnectionState.waiting) {
-                //       return const CircularProgressIndicator();
-                //     } else if (snapshot.hasError) {
-                //       return Text('Error: ${snapshot.error}');
-                //     } else {
-                //       final categories = snapshot.data!;
-                //       return ScrollablePositionedList.separated(
-                //         itemCount: categories.length,
-                //         padding: const EdgeInsets.symmetric(horizontal: 10),
-                //         scrollDirection: Axis.horizontal,
-                //         itemBuilder: (context, index) => CategoryWidget(
-                //           onTap: () => setState(() {
-                //             if (filters.contains(categories[index])) {
-                //               filters.remove(categories[index]);
-                //             } else {
-                //               filters.add(categories[index]);
-                //             }
-                //           }),
-                //           title: categories[index],
-                //         ),
-                //         separatorBuilder: (context, index) => const SizedBox(width: 8),
-                //       );
-                //     }
-                //   },
-                // ),
               ),
             ),
           ),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.all(10.0),
-              child: FutureBuilder(
-                future: loadArticles(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator();
-                  } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}');
-                  } else {
+              child: BlocBuilder<ArticlesBloc, ArticlesState>(
+                bloc: _articlesBloc,
+                builder: (context, state) => state.when(
+                  loading: () => const CircularProgressIndicator(),
+                  loaded: (allArticles) {
                     if (filters.isEmpty) {
-                      articles = snapshot.data!;
+                      articles = allArticles;
                     } else {
-                      articles = snapshot.data!.where((article) => filters.contains(article.category)).toList();
+                      articles = allArticles.where((article) => filters.contains(article.category)).toList();
                     }
                     return SizedBox(
                       height: 100 * articles.length + 15 * (articles.length - 1),
@@ -138,8 +110,9 @@ class _MainPageState extends State<MainPage> {
                         separatorBuilder: (context, index) => const SizedBox(height: 15),
                       ),
                     );
-                  }
-                },
+                  },
+                  error: () => const Text('Error'),
+                ),
               ),
             ),
           ),

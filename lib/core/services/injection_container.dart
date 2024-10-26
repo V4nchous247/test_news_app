@@ -5,4 +5,5 @@ final sl = GetIt.instance;
 
 void setup() {
   sl.registerSingleton<CategoriesBloc>(CategoriesBloc());
+  sl.registerSingleton<ArticlesBloc>(ArticlesBloc());
 }
