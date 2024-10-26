@@ -7,8 +7,8 @@ class BaseWidget extends StatefulWidget {
     required this.searchController,
   });
 
-  final Widget child;
   final TextEditingController searchController;
+  final Widget Function(bool isSearching) child;
 
   @override
   State<BaseWidget> createState() => _BaseWidgetState();
@@ -51,19 +51,7 @@ class _BaseWidgetState extends State<BaseWidget> {
           ),
         ],
       ),
-      // appBar: AppBar(
-      //   title: const Center(
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //       children: [
-      //         Icon(Icons.menu),
-      //         Text('NewYork Times'),
-      //         Icon(Icons.search),
-      //       ],
-      //     ),
-      //   ),
-      // ),
-      body: widget.child,
+      body: widget.child(_isSearching),
     );
   }
 }
