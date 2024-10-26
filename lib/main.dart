@@ -3,18 +3,21 @@ import 'package:test_news_app/index.dart';
 
 void main() {
   setup();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
+      routerDelegate: _appRouter.delegate(),
+      routeInformationParser: _appRouter.defaultRouteParser(),
       title: 'NewYork Times',
       debugShowCheckedModeBanner: false,
-      home: MainPage(),
     );
   }
 }

@@ -1,10 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_news_app/index.dart';
 import 'package:flutter/material.dart';
 
-import 'dart:convert';
-import 'package:flutter/services.dart' show rootBundle;
-
+@RoutePage()
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
@@ -13,15 +12,6 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  Future<List<Article>> loadArticles() async {
-    String jsonString = await rootBundle.loadString('assets/strings/articles.json');
-
-    final data = json.decode(jsonString);
-    List<Article> articles = (data['articles'] as List).map((article) => Article.fromJson(article)).toList();
-
-    return articles;
-  }
-
   final TextEditingController _searchController = TextEditingController();
 
   final CategoriesBloc _categoriesBloc = sl<CategoriesBloc>();
@@ -46,24 +36,33 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return BaseWidget(
       searchController: _searchController,
-      child: (isSearching) => isSearching
-          ? BlocBuilder<ArticlesBloc, ArticlesState>(
-              bloc: _articlesBloc,
+      child: (isSearching) => BlocBuilder<ArticlesBloc, ArticlesState>(
+        bloc: _articlesBloc,
+        builder: (context, state) {
+          return state.when(
+            loading: () => const CircularProgressIndicator(),
+            loaded: (articles) => BlocBuilder<CategoriesBloc, CategoriesState>(
+              bloc: _categoriesBloc,
               builder: (context, state) {
                 return state.when(
                   loading: () => const CircularProgressIndicator(),
-                  loaded: (articles) => SearchLayout(
-                    articles: articles,
-                    searchController: _searchController,
-                  ),
+                  loaded: (categories) => isSearching
+                      ? SearchLayout(
+                          allArticles: articles,
+                          searchController: _searchController,
+                        )
+                      : DefaultLayout(
+                          allArticles: articles,
+                          allCategories: categories,
+                        ),
                   error: () => const Text('ERROR'),
                 );
               },
-            )
-          : DefaultLayout(
-              categoriesBloc: _categoriesBloc,
-              articlesBloc: _articlesBloc,
             ),
+            error: () => const Text('ERROR'),
+          );
+        },
+      ),
     );
   }
 }

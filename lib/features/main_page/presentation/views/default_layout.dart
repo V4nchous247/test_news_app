@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:test_news_app/index.dart';
 
 class DefaultLayout extends StatefulWidget {
   const DefaultLayout({
     super.key,
-    required this.categoriesBloc,
-    required this.articlesBloc,
+    required this.allCategories,
+    required this.allArticles,
   });
 
-  final CategoriesBloc categoriesBloc;
-  final ArticlesBloc articlesBloc;
+  final List<String> allCategories;
+  final List<Article> allArticles;
 
   @override
   State<DefaultLayout> createState() => _DefaultLayoutState();
@@ -20,6 +19,24 @@ class DefaultLayout extends StatefulWidget {
 class _DefaultLayoutState extends State<DefaultLayout> {
   List<Article> articles = [];
   List<String> filters = [];
+  List<String> _categories = [];
+
+  static const String _popular = 'Популярное';
+  static const String _actual = 'Читают';
+
+  @override
+  void initState() {
+    initCategories();
+    super.initState();
+  }
+
+  void initCategories() {
+    _categories = [
+      _popular,
+      _actual,
+      ...widget.allCategories,
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,28 +53,21 @@ class _DefaultLayoutState extends State<DefaultLayout> {
             padding: const EdgeInsets.symmetric(vertical: 10.0),
             child: SizedBox(
               height: 40,
-              child: BlocBuilder<CategoriesBloc, CategoriesState>(
-                bloc: widget.categoriesBloc,
-                builder: (context, state) => state.when(
-                  loading: () => const CircularProgressIndicator(),
-                  loaded: (categories) => ScrollablePositionedList.separated(
-                    itemCount: categories.length,
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => CategoryWidget(
-                      onTap: () => setState(() {
-                        if (filters.contains(categories[index])) {
-                          filters.remove(categories[index]);
-                        } else {
-                          filters.add(categories[index]);
-                        }
-                      }),
-                      title: categories[index],
-                    ),
-                    separatorBuilder: (context, index) => const SizedBox(width: 8),
-                  ),
-                  error: () => const Text('ERROR'),
+              child: ScrollablePositionedList.separated(
+                itemCount: _categories.length,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => CategoryWidget(
+                  onTap: () => setState(() {
+                    if (filters.contains(_categories[index])) {
+                      filters.remove(_categories[index]);
+                    } else {
+                      filters.add(_categories[index]);
+                    }
+                  }),
+                  title: _categories[index],
                 ),
+                separatorBuilder: (context, index) => const SizedBox(width: 8),
               ),
             ),
           ),
@@ -65,27 +75,34 @@ class _DefaultLayoutState extends State<DefaultLayout> {
         SliverToBoxAdapter(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
-            child: BlocBuilder<ArticlesBloc, ArticlesState>(
-              bloc: widget.articlesBloc,
-              builder: (context, state) => state.when(
-                loading: () => const CircularProgressIndicator(),
-                loaded: (allArticles) {
-                  if (filters.isEmpty) {
-                    articles = allArticles;
-                  } else {
-                    articles = allArticles.where((article) => filters.contains(article.category)).toList();
-                  }
-                  return SizedBox(
-                    height: 100 * articles.length + 15 * (articles.length - 1),
-                    child: ScrollablePositionedList.separated(
-                      itemCount: articles.length,
-                      itemBuilder: (context, index) => ArticleWidget(article: articles[index]),
-                      separatorBuilder: (context, index) => const SizedBox(height: 15),
+            child: Builder(
+              builder: (context) {
+                articles = widget.allArticles;
+
+                if (filters.isNotEmpty) {
+                  articles = widget.allArticles.where((article) => filters.contains(article.category)).toList();
+                }
+                if (filters.contains(_popular)) {
+                  final sortedArticles = articles.where((article) => article.allTimeViews > 0).toList()
+                    ..sort((a, b) => b.allTimeViews.compareTo(a.allTimeViews));
+                  articles = sortedArticles;
+                }
+                if (filters.contains(_actual)) {
+                  final sortedArticles = articles.where((article) => article.lastTreeDaysViews > 0).toList()
+                    ..sort((a, b) => b.lastTreeDaysViews.compareTo(a.lastTreeDaysViews));
+                  articles = sortedArticles;
+                }
+                return SizedBox(
+                  height: 100 * articles.length + 15 * (articles.length - 1),
+                  child: ScrollablePositionedList.separated(
+                    itemCount: articles.length,
+                    itemBuilder: (context, index) => ArticleWidget(
+                      article: articles[index],
                     ),
-                  );
-                },
-                error: () => const Text('Error'),
-              ),
+                    separatorBuilder: (context, index) => const SizedBox(height: 15),
+                  ),
+                );
+              },
             ),
           ),
         ),

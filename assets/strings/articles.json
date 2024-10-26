@@ -3,7 +3,7 @@
         {
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Global Economy Updates",
-            "subTitle": "Key changes affecting the economy",
+            "subTitle": "It's these voters that Donald Trump and Vice-President Kamala Harris hope to win over in Nevada, a hotly contested battleground state in which the two remain neck-and-neck in the polls. To court low-wage workers, Harris and Trump have laid out starkly different economic visions, including competing anti-poverty policies that could help shape the financial security of millions of families. But victory in unpredictable Nevada - one of the key states which will determine who becomes the next president - will be won by just a tiny fraction of undecided voters there, political insiders say. Data shows that about a third of the state's voters consider themselves independent, with an August New York Times/Siena poll of likely voters showing that a slight majority of independents lean Republican (43%) compared to those who lean Democrat (39%).",
             "category": "Экономика",
             "allTimeViews": 1200,
             "lastTreeDaysViews": 300
@@ -13,8 +13,8 @@
             "title": "Political Shakeup in Europe",
             "subTitle": "What recent elections mean",
             "category": "Политика",
-            "allTimeViews": 800,
-            "lastTreeDaysViews": 150
+            "allTimeViews": 0,
+            "lastTreeDaysViews": 0
         },
         {
             "imgUrl": "assets/images/channels4_profile.jpg",
@@ -28,9 +28,9 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Championship Insights",
             "subTitle": "Highlights from recent sports events",
-            "category": "Спорт",
+            "category": "Политика",
             "allTimeViews": 1400,
-            "lastTreeDaysViews": 400
+            "lastTreeDaysViews": 0
         },
         {
             "imgUrl": "assets/images/channels4_profile.jpg",

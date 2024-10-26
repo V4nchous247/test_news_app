@@ -5,11 +5,11 @@ import 'package:test_news_app/index.dart';
 class SearchLayout extends StatefulWidget {
   const SearchLayout({
     super.key,
-    required this.articles,
+    required this.allArticles,
     required this.searchController,
   });
 
-  final List<Article> articles;
+  final List<Article> allArticles;
   final TextEditingController searchController;
 
   @override
@@ -23,13 +23,13 @@ class _SearchLayoutState extends State<SearchLayout> {
   void initState() {
     super.initState();
     widget.searchController.addListener(_onSearchChanged);
-    filteredArticles = widget.articles;
+    filteredArticles = widget.allArticles;
   }
 
   void _onSearchChanged() {
     String searchQuery = widget.searchController.text.toLowerCase();
     setState(() {
-      filteredArticles = widget.articles.where((article) {
+      filteredArticles = widget.allArticles.where((article) {
         return article.title.toLowerCase().contains(searchQuery) ||
             article.subTitle.toLowerCase().contains(searchQuery) ||
             article.category.toLowerCase().contains(searchQuery);
@@ -45,7 +45,9 @@ class _SearchLayoutState extends State<SearchLayout> {
         height: 100 * filteredArticles.length + 15 * (filteredArticles.length - 1),
         child: ScrollablePositionedList.separated(
           itemCount: filteredArticles.length,
-          itemBuilder: (context, index) => ArticleWidget(article: filteredArticles[index]),
+          itemBuilder: (context, index) => ArticleWidget(
+            article: filteredArticles[index],
+          ),
           separatorBuilder: (context, index) => const SizedBox(height: 15),
         ),
       ),
