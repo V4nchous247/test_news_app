@@ -46,6 +46,7 @@ class _SearchLayoutState extends State<SearchLayout> {
         child: ScrollablePositionedList.separated(
           itemCount: filteredArticles.length,
           itemBuilder: (context, index) => ArticleWidget(
+            allArticles: widget.allArticles,
             article: filteredArticles[index],
           ),
           separatorBuilder: (context, index) => const SizedBox(height: 15),

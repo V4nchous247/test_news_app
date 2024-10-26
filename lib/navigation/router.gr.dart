@@ -22,12 +22,14 @@ class ArticleRoute extends _i3.PageRouteInfo<ArticleRouteArgs> {
   ArticleRoute({
     _i4.Key? key,
     required _i5.Article article,
+    required List<_i5.Article> allArticles,
     List<_i3.PageRouteInfo>? children,
   }) : super(
           ArticleRoute.name,
           args: ArticleRouteArgs(
             key: key,
             article: article,
+            allArticles: allArticles,
           ),
           initialChildren: children,
         );
@@ -41,6 +43,7 @@ class ArticleRoute extends _i3.PageRouteInfo<ArticleRouteArgs> {
       return _i1.ArticlePage(
         key: args.key,
         article: args.article,
+        allArticles: args.allArticles,
       );
     },
   );
@@ -50,15 +53,18 @@ class ArticleRouteArgs {
   const ArticleRouteArgs({
     this.key,
     required this.article,
+    required this.allArticles,
   });
 
   final _i4.Key? key;
 
   final _i5.Article article;
 
+  final List<_i5.Article> allArticles;
+
   @override
   String toString() {
-    return 'ArticleRouteArgs{key: $key, article: $article}';
+    return 'ArticleRouteArgs{key: $key, article: $article, allArticles: $allArticles}';
   }
 }
 

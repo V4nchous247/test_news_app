@@ -97,6 +97,7 @@ class _DefaultLayoutState extends State<DefaultLayout> {
                   child: ScrollablePositionedList.separated(
                     itemCount: articles.length,
                     itemBuilder: (context, index) => ArticleWidget(
+                      allArticles: articles,
                       article: articles[index],
                     ),
                     separatorBuilder: (context, index) => const SizedBox(height: 15),

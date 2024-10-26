@@ -7,14 +7,16 @@ class ArticleWidget extends StatelessWidget {
   const ArticleWidget({
     super.key,
     required this.article,
+    required this.allArticles,
   });
 
   final Article article;
+  final List<Article> allArticles;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => AutoRouter.of(context).push(ArticleRoute(article: article)),
+      onTap: () => AutoRouter.of(context).push(ArticleRoute(article: article, allArticles: allArticles)),
       child: Material(
         elevation: 20,
         borderRadius: BorderRadius.circular(10),

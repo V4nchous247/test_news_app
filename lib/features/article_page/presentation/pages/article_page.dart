@@ -7,9 +7,11 @@ class ArticlePage extends StatelessWidget {
   const ArticlePage({
     super.key,
     required this.article,
+    required this.allArticles,
   });
 
   final Article article;
+  final List<Article> allArticles;
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +33,19 @@ class ArticlePage extends StatelessWidget {
               ),
             ),
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('More in this category:', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                  const Text('More in this category:', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                  ArticleWidget(
+                    article: allArticles.firstWhere(
+                      (newArticle) => newArticle.category == article.category && newArticle != article,
+                    ),
+                    allArticles: allArticles,
+                  )
                 ],
               ),
             ),
