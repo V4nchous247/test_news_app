@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:test_news_app/index.dart';
 import 'package:flutter/material.dart';
@@ -5,17 +6,14 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter/services.dart' show rootBundle;
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
-  Future<List<String>> loadCategories() async {
-    String jsonString = await rootBundle.loadString('assets/strings/categories.json');
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
 
-    final data = json.decode(jsonString);
-    List<String> categories = List<String>.from(data['categories']);
-    return categories;
-  }
-
+class _MainPageState extends State<MainPage> {
   Future<List<Article>> loadArticles() async {
     String jsonString = await rootBundle.loadString('assets/strings/articles.json');
 
@@ -25,9 +23,30 @@ class MainPage extends StatelessWidget {
     return articles;
   }
 
+  List<Article> articles = [];
+  List<String> filters = [];
+
+  final TextEditingController _searchController = TextEditingController();
+
+  final CategoriesBloc _categoriesBloc = sl<CategoriesBloc>();
+
+  @override
+  void initState() {
+    _categoriesBloc.add(const CategoriesEvent.fetch());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _categoriesBloc.close();
+    _searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BaseWidget(
+      searchController: _searchController,
       child: CustomScrollView(
         slivers: [
           const SliverToBoxAdapter(
@@ -41,25 +60,57 @@ class MainPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 10.0),
               child: SizedBox(
                 height: 40,
-                child: FutureBuilder(
-                  future: loadCategories(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const CircularProgressIndicator();
-                    } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else {
-                      final categories = snapshot.data!;
-                      return ScrollablePositionedList.separated(
-                        itemCount: categories.length,
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) => CategoryWidget(title: categories[index]),
-                        separatorBuilder: (context, index) => const SizedBox(width: 8),
-                      );
-                    }
-                  },
+                child: BlocBuilder<CategoriesBloc, CategoriesState>(
+                  bloc: _categoriesBloc,
+                  builder: (context, state) => state.when(
+                    loading: () => const CircularProgressIndicator(),
+                    loaded: (categories) => ScrollablePositionedList.separated(
+                      itemCount: categories.length,
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) => CategoryWidget(
+                        onTap: () => setState(() {
+                          if (filters.contains(categories[index])) {
+                            filters.remove(categories[index]);
+                          } else {
+                            filters.add(categories[index]);
+                          }
+                        }),
+                        title: categories[index],
+                      ),
+                      separatorBuilder: (context, index) => const SizedBox(width: 8),
+                    ),
+                    error: () => const Text('ERROR'),
+                  ),
                 ),
+                // child: FutureBuilder(
+                //   future: loadCategories(),
+                //   builder: (context, snapshot) {
+                //     if (snapshot.connectionState == ConnectionState.waiting) {
+                //       return const CircularProgressIndicator();
+                //     } else if (snapshot.hasError) {
+                //       return Text('Error: ${snapshot.error}');
+                //     } else {
+                //       final categories = snapshot.data!;
+                //       return ScrollablePositionedList.separated(
+                //         itemCount: categories.length,
+                //         padding: const EdgeInsets.symmetric(horizontal: 10),
+                //         scrollDirection: Axis.horizontal,
+                //         itemBuilder: (context, index) => CategoryWidget(
+                //           onTap: () => setState(() {
+                //             if (filters.contains(categories[index])) {
+                //               filters.remove(categories[index]);
+                //             } else {
+                //               filters.add(categories[index]);
+                //             }
+                //           }),
+                //           title: categories[index],
+                //         ),
+                //         separatorBuilder: (context, index) => const SizedBox(width: 8),
+                //       );
+                //     }
+                //   },
+                // ),
               ),
             ),
           ),
@@ -74,10 +125,13 @@ class MainPage extends StatelessWidget {
                   } else if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
                   } else {
-                    final articles = snapshot.data!;
-
+                    if (filters.isEmpty) {
+                      articles = snapshot.data!;
+                    } else {
+                      articles = snapshot.data!.where((article) => filters.contains(article.category)).toList();
+                    }
                     return SizedBox(
-                      height: 2285,
+                      height: 100 * articles.length + 15 * (articles.length - 1),
                       child: ScrollablePositionedList.separated(
                         itemCount: articles.length,
                         itemBuilder: (context, index) => ArticleWidget(article: articles[index]),

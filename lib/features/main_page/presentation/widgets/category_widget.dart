@@ -4,9 +4,11 @@ class CategoryWidget extends StatefulWidget {
   const CategoryWidget({
     super.key,
     required this.title,
+    required this.onTap,
   });
 
   final String title;
+  final void Function() onTap;
 
   @override
   State<CategoryWidget> createState() => _CategoryWidgetState();
@@ -18,9 +20,10 @@ class _CategoryWidgetState extends State<CategoryWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => setState(() {
+      onTap: () {
         _isSelected = !_isSelected;
-      }),
+        widget.onTap();
+      },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),

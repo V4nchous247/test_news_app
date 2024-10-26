@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:test_news_app/features/main_page/presentation/pages/main_page.dart';
+import 'package:test_news_app/index.dart';
 
 void main() {
+  setup();
   runApp(const MyApp());
 }
 

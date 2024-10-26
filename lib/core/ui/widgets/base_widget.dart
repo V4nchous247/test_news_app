@@ -1,34 +1,69 @@
 import 'package:flutter/material.dart';
 
-class BaseWidget extends StatelessWidget {
+class BaseWidget extends StatefulWidget {
   const BaseWidget({
     super.key,
     required this.child,
+    required this.searchController,
   });
 
   final Widget child;
+  final TextEditingController searchController;
 
-  static const _appBarContentPadding = EdgeInsets.symmetric(horizontal: 10.0);
+  @override
+  State<BaseWidget> createState() => _BaseWidgetState();
+}
+
+class _BaseWidgetState extends State<BaseWidget> {
+  bool _isSearching = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(
-          child: Padding(
-            padding: _appBarContentPadding,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Icon(Icons.menu),
-                Text('NewYork Times'),
-                Icon(Icons.search),
-              ],
-            ),
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            // Handle menu button
+          },
         ),
+        title: _isSearching
+            ? TextField(
+                controller: widget.searchController,
+                decoration: const InputDecoration(
+                  hintText: "Search...",
+                  border: InputBorder.none,
+                ),
+                autofocus: true,
+              )
+            : const Center(child: Text("NewYork Times")),
+        actions: [
+          IconButton(
+            icon: Icon(_isSearching ? Icons.close : Icons.search),
+            onPressed: () {
+              setState(() {
+                if (_isSearching) {
+                  widget.searchController.clear();
+                }
+                _isSearching = !_isSearching;
+              });
+            },
+          ),
+        ],
       ),
-      body: child,
+      // appBar: AppBar(
+      //   title: const Center(
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //       children: [
+      //         Icon(Icons.menu),
+      //         Text('NewYork Times'),
+      //         Icon(Icons.search),
+      //       ],
+      //     ),
+      //   ),
+      // ),
+      body: widget.child,
     );
   }
 }
