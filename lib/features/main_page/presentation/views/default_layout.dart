@@ -78,16 +78,17 @@ class _DefaultLayoutState extends State<DefaultLayout> {
             child: Builder(
               builder: (context) {
                 articles = widget.allArticles;
-
                 if (filters.isNotEmpty) {
                   articles = widget.allArticles.where((article) => filters.contains(article.category)).toList();
                 }
                 if (filters.contains(_popular)) {
+                  articles = widget.allArticles;
                   final sortedArticles = articles.where((article) => article.allTimeViews > 0).toList()
                     ..sort((a, b) => b.allTimeViews.compareTo(a.allTimeViews));
                   articles = sortedArticles;
                 }
                 if (filters.contains(_actual)) {
+                  articles = widget.allArticles;
                   final sortedArticles = articles.where((article) => article.lastTreeDaysViews > 0).toList()
                     ..sort((a, b) => b.lastTreeDaysViews.compareTo(a.lastTreeDaysViews));
                   articles = sortedArticles;
