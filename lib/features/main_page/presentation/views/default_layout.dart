@@ -93,17 +93,27 @@ class _DefaultLayoutState extends State<DefaultLayout> {
                     ..sort((a, b) => b.lastTreeDaysViews.compareTo(a.lastTreeDaysViews));
                   _articles = sortedArticles;
                 }
-                return SizedBox(
-                  height: 100 * _articles.length + 15 * (_articles.length - 1),
-                  child: ScrollablePositionedList.separated(
-                    itemCount: _articles.length,
-                    itemBuilder: (context, index) => ArticleWidget(
-                      allArticles: _articles,
-                      article: _articles[index],
-                    ),
-                    separatorBuilder: (context, index) => const SizedBox(height: 15),
-                  ),
-                );
+                return _articles.isNotEmpty
+                    ? SizedBox(
+                        height: 100 * _articles.length + 15 * (_articles.length - 1),
+                        child: ScrollablePositionedList.separated(
+                          itemCount: _articles.length,
+                          itemBuilder: (context, index) => ArticleWidget(
+                            allArticles: _articles,
+                            article: _articles[index],
+                          ),
+                          separatorBuilder: (context, index) => const SizedBox(height: 15),
+                        ),
+                      )
+                    : const Center(
+                        child: Text(
+                          'No articles in this category',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      );
               },
             ),
           ),

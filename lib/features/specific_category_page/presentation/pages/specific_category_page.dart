@@ -22,20 +22,30 @@ class SpecificCategoryPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(specificCategory),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: SizedBox(
-          height: 100 * articles.length + 15 * (articles.length - 1),
-          child: ScrollablePositionedList.separated(
-            itemCount: articles.length,
-            itemBuilder: (context, index) => ArticleWidget(
-              allArticles: articles,
-              article: articles[index],
+      body: articles.isNotEmpty
+          ? Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: SizedBox(
+                height: 100 * articles.length + 15 * (articles.length - 1),
+                child: ScrollablePositionedList.separated(
+                  itemCount: articles.length,
+                  itemBuilder: (context, index) => ArticleWidget(
+                    allArticles: articles,
+                    article: articles[index],
+                  ),
+                  separatorBuilder: (context, index) => const SizedBox(height: 15),
+                ),
+              ),
+            )
+          : const Center(
+              child: Text(
+                'No articles in this category',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
             ),
-            separatorBuilder: (context, index) => const SizedBox(height: 15),
-          ),
-        ),
-      ),
     );
   }
 }
