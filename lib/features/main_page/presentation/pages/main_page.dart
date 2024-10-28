@@ -34,19 +34,21 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget(
-      searchController: _searchController,
-      child: (isSearching) => BlocBuilder<ArticlesBloc, ArticlesState>(
-        bloc: _articlesBloc,
-        builder: (context, state) {
-          return state.when(
-            loading: () => const CircularProgressIndicator(),
-            loaded: (articles) => BlocBuilder<CategoriesBloc, CategoriesState>(
-              bloc: _categoriesBloc,
-              builder: (context, state) {
-                return state.when(
-                  loading: () => const CircularProgressIndicator(),
-                  loaded: (categories) => isSearching
+    return BlocBuilder<ArticlesBloc, ArticlesState>(
+      bloc: _articlesBloc,
+      builder: (context, state) {
+        return state.when(
+          loading: () => const CircularProgressIndicator(),
+          loaded: (articles) => BlocBuilder<CategoriesBloc, CategoriesState>(
+            bloc: _categoriesBloc,
+            builder: (context, state) {
+              return state.when(
+                loading: () => const CircularProgressIndicator(),
+                loaded: (categories) => BaseWidget(
+                  searchController: _searchController,
+                  categories: categories,
+                  articles: articles,
+                  child: (isSearching) => isSearching
                       ? SearchLayout(
                           allArticles: articles,
                           searchController: _searchController,
@@ -55,14 +57,14 @@ class _MainPageState extends State<MainPage> {
                           allArticles: articles,
                           allCategories: categories,
                         ),
-                  error: () => const Text('ERROR'),
-                );
-              },
-            ),
-            error: () => const Text('ERROR'),
-          );
-        },
-      ),
+                ),
+                error: () => const Text('ERROR'),
+              );
+            },
+          ),
+          error: () => const Text('ERROR'),
+        );
+      },
     );
   }
 }

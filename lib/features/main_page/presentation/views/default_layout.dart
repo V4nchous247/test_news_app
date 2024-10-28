@@ -17,9 +17,9 @@ class DefaultLayout extends StatefulWidget {
 }
 
 class _DefaultLayoutState extends State<DefaultLayout> {
-  List<Article> articles = [];
-  List<String> filters = [];
+  List<Article> _articles = [];
   List<String> _categories = [];
+  final _filters = [];
 
   static const String _popular = 'Популярное';
   static const String _actual = 'Читают';
@@ -59,10 +59,10 @@ class _DefaultLayoutState extends State<DefaultLayout> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => CategoryWidget(
                   onTap: () => setState(() {
-                    if (filters.contains(_categories[index])) {
-                      filters.remove(_categories[index]);
+                    if (_filters.contains(_categories[index])) {
+                      _filters.remove(_categories[index]);
                     } else {
-                      filters.add(_categories[index]);
+                      _filters.add(_categories[index]);
                     }
                   }),
                   title: _categories[index],
@@ -77,29 +77,29 @@ class _DefaultLayoutState extends State<DefaultLayout> {
             padding: const EdgeInsets.all(10.0),
             child: Builder(
               builder: (context) {
-                articles = widget.allArticles;
-                if (filters.isNotEmpty) {
-                  articles = widget.allArticles.where((article) => filters.contains(article.category)).toList();
+                _articles = widget.allArticles;
+                if (_filters.isNotEmpty) {
+                  _articles = widget.allArticles.where((article) => _filters.contains(article.category)).toList();
                 }
-                if (filters.contains(_popular)) {
-                  articles = widget.allArticles;
-                  final sortedArticles = articles.where((article) => article.allTimeViews > 0).toList()
+                if (_filters.contains(_popular)) {
+                  _articles = widget.allArticles;
+                  final sortedArticles = _articles.where((article) => article.allTimeViews > 0).toList()
                     ..sort((a, b) => b.allTimeViews.compareTo(a.allTimeViews));
-                  articles = sortedArticles;
+                  _articles = sortedArticles;
                 }
-                if (filters.contains(_actual)) {
-                  articles = widget.allArticles;
-                  final sortedArticles = articles.where((article) => article.lastTreeDaysViews > 0).toList()
+                if (_filters.contains(_actual)) {
+                  _articles = widget.allArticles;
+                  final sortedArticles = _articles.where((article) => article.lastTreeDaysViews > 0).toList()
                     ..sort((a, b) => b.lastTreeDaysViews.compareTo(a.lastTreeDaysViews));
-                  articles = sortedArticles;
+                  _articles = sortedArticles;
                 }
                 return SizedBox(
-                  height: 100 * articles.length + 15 * (articles.length - 1),
+                  height: 100 * _articles.length + 15 * (_articles.length - 1),
                   child: ScrollablePositionedList.separated(
-                    itemCount: articles.length,
+                    itemCount: _articles.length,
                     itemBuilder: (context, index) => ArticleWidget(
-                      allArticles: articles,
-                      article: articles[index],
+                      allArticles: _articles,
+                      article: _articles[index],
                     ),
                     separatorBuilder: (context, index) => const SizedBox(height: 15),
                   ),

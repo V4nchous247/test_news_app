@@ -1,13 +1,21 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:test_news_app/index.dart';
+import 'package:test_news_app/navigation/router.gr.dart';
 
 class BaseWidget extends StatefulWidget {
   const BaseWidget({
     super.key,
-    required this.child,
     required this.searchController,
+    required this.categories,
+    required this.articles,
+    required this.child,
   });
 
   final TextEditingController searchController;
+  final List<String> categories;
+  final List<Article> articles;
   final Widget Function(bool isSearching) child;
 
   @override
@@ -20,13 +28,27 @@ class _BaseWidgetState extends State<BaseWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.menu),
-          onPressed: () {
-            // Handle menu button
-          },
+      drawer: Drawer(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: ScrollablePositionedList.separated(
+            itemCount: widget.categories.length,
+            itemBuilder: (context, index) => ListTile(
+              title: Text(
+                widget.categories[index],
+              ),
+              onTap: () => AutoRouter.of(context).push(
+                SpecificCategoryRoute(
+                  allArticles: widget.articles,
+                  specificCategory: widget.categories[index],
+                ),
+              ),
+            ),
+            separatorBuilder: (context, index) => const SizedBox(height: 10),
+          ),
         ),
+      ),
+      appBar: AppBar(
         title: _isSearching
             ? TextField(
                 controller: widget.searchController,
