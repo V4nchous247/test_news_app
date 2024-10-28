@@ -1,7 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_news_app/index.dart';
-import 'package:flutter/material.dart';
 
 @RoutePage()
 class MainPage extends StatefulWidget {
@@ -58,11 +56,11 @@ class _MainPageState extends State<MainPage> {
                           allCategories: categories,
                         ),
                 ),
-                error: () => const Text('ERROR'),
+                error: () => Text(AppLocalizations.of(context)!.errorMsg),
               );
             },
           ),
-          error: () => const Text('ERROR'),
+          error: () => Text(AppLocalizations.of(context)!.errorMsg),
         );
       },
     );

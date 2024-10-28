@@ -1,8 +1,5 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:test_news_app/index.dart';
-import 'package:test_news_app/navigation/router.gr.dart';
 
 class BaseWidget extends StatefulWidget {
   const BaseWidget({
@@ -52,13 +49,13 @@ class _BaseWidgetState extends State<BaseWidget> {
         title: _isSearching
             ? TextField(
                 controller: widget.searchController,
-                decoration: const InputDecoration(
-                  hintText: "Search...",
+                decoration: InputDecoration(
+                  hintText: AppLocalizations.of(context)!.searchBarPlaceHolder,
                   border: InputBorder.none,
                 ),
                 autofocus: true,
               )
-            : const Center(child: Text("NewYork Times")),
+            : Center(child: Text(AppLocalizations.of(context)!.appName)),
         actions: [
           IconButton(
             icon: Icon(_isSearching ? Icons.close : Icons.search),

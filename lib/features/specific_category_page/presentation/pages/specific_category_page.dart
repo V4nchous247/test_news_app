@@ -1,5 +1,3 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:test_news_app/index.dart';
 
@@ -37,10 +35,10 @@ class SpecificCategoryPage extends StatelessWidget {
                 ),
               ),
             )
-          : const Center(
+          : Center(
               child: Text(
-                'No articles in this category',
-                style: TextStyle(
+                AppLocalizations.of(context)!.emptyCategoryPlaceholder,
+                style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w600,
                 ),

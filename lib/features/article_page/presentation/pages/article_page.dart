@@ -1,6 +1,4 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:test_news_app/index.dart';
-import 'package:flutter/material.dart';
 
 @RoutePage()
 class ArticlePage extends StatelessWidget {
@@ -39,7 +37,8 @@ class ArticlePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('More in this category:', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
+                  Text(AppLocalizations.of(context)!.nextArticleHint,
+                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w500)),
                   ArticleWidget(
                     article: allArticles.firstWhere(
                       (newArticle) => newArticle.category == article.category && newArticle != article,

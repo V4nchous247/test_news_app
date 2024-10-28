@@ -4,7 +4,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Global Economy Updates",
             "subTitle": "It's these voters that Donald Trump and Vice-President Kamala Harris hope to win over in Nevada, a hotly contested battleground state in which the two remain neck-and-neck in the polls. To court low-wage workers, Harris and Trump have laid out starkly different economic visions, including competing anti-poverty policies that could help shape the financial security of millions of families. But victory in unpredictable Nevada - one of the key states which will determine who becomes the next president - will be won by just a tiny fraction of undecided voters there, political insiders say. Data shows that about a third of the state's voters consider themselves independent, with an August New York Times/Siena poll of likely voters showing that a slight majority of independents lean Republican (43%) compared to those who lean Democrat (39%).",
-            "category": "Экономика",
+            "category": "Economy",
             "allTimeViews": 1200,
             "lastTreeDaysViews": 300
         },
@@ -12,7 +12,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Political Shakeup in Europe",
             "subTitle": "What recent elections mean",
-            "category": "Политика",
+            "category": "Politics",
             "allTimeViews": 0,
             "lastTreeDaysViews": 0
         },
@@ -20,7 +20,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "New Art Movements",
             "subTitle": "A revival in classic styles",
-            "category": "Культура",
+            "category": "Culture",
             "allTimeViews": 950,
             "lastTreeDaysViews": 280
         },
@@ -28,7 +28,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Championship Insights",
             "subTitle": "Highlights from recent sports events",
-            "category": "Политика",
+            "category": "Politics",
             "allTimeViews": 1400,
             "lastTreeDaysViews": 0
         },
@@ -36,7 +36,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Innovations in Education",
             "subTitle": "How technology is changing classrooms",
-            "category": "Общество",
+            "category": "Society",
             "allTimeViews": 1100,
             "lastTreeDaysViews": 290
         },
@@ -44,7 +44,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Breaking News Worldwide",
             "subTitle": "Key events from around the globe",
-            "category": "В мире",
+            "category": "World",
             "allTimeViews": 1300,
             "lastTreeDaysViews": 320
         },
@@ -52,7 +52,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Insights on Climate Change",
             "subTitle": "The latest impacts and responses",
-            "category": "Происшествия",
+            "category": "Incidents",
             "allTimeViews": 1000,
             "lastTreeDaysViews": 200
         },
@@ -60,7 +60,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "The Future of Economy",
             "subTitle": "Experts weigh in on upcoming trends",
-            "category": "Экономика",
+            "category": "Economy",
             "allTimeViews": 1600,
             "lastTreeDaysViews": 450
         },
@@ -68,7 +68,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Political Shifts",
             "subTitle": "New leaders and their agendas",
-            "category": "Политика",
+            "category": "Politics",
             "allTimeViews": 700,
             "lastTreeDaysViews": 120
         },
@@ -76,7 +76,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Celebrating Local Arts",
             "subTitle": "A spotlight on new artists",
-            "category": "Культура",
+            "category": "Culture",
             "allTimeViews": 850,
             "lastTreeDaysViews": 250
         },
@@ -84,7 +84,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Tournament Recap",
             "subTitle": "Results and highlights from matches",
-            "category": "Спорт",
+            "category": "Sports",
             "allTimeViews": 1550,
             "lastTreeDaysViews": 350
         },
@@ -92,7 +92,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Social Innovations",
             "subTitle": "Communities driving change",
-            "category": "Общество",
+            "category": "Society",
             "allTimeViews": 900,
             "lastTreeDaysViews": 260
         },
@@ -100,7 +100,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Global Updates",
             "subTitle": "Significant events from different countries",
-            "category": "В мире",
+            "category": "World",
             "allTimeViews": 1350,
             "lastTreeDaysViews": 280
         },
@@ -108,7 +108,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Environmental Disasters",
             "subTitle": "Natural events impacting the world",
-            "category": "Происшествия",
+            "category": "Incidents",
             "allTimeViews": 1250,
             "lastTreeDaysViews": 330
         },
@@ -116,7 +116,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "New Economic Trends",
             "subTitle": "Sectors on the rise",
-            "category": "Экономика",
+            "category": "Economy",
             "allTimeViews": 1700,
             "lastTreeDaysViews": 420
         },
@@ -124,7 +124,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Policy Changes",
             "subTitle": "Governments rethinking regulations",
-            "category": "Политика",
+            "category": "Politics",
             "allTimeViews": 780,
             "lastTreeDaysViews": 140
         },
@@ -132,7 +132,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Art Festivals",
             "subTitle": "An overview of upcoming events",
-            "category": "Культура",
+            "category": "Culture",
             "allTimeViews": 920,
             "lastTreeDaysViews": 310
         },
@@ -140,7 +140,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Champions and Records",
             "subTitle": "Highlighting top players",
-            "category": "Спорт",
+            "category": "Sports",
             "allTimeViews": 1420,
             "lastTreeDaysViews": 390
         },
@@ -148,7 +148,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Community Support Systems",
             "subTitle": "Improving local welfare",
-            "category": "Общество",
+            "category": "Society",
             "allTimeViews": 1150,
             "lastTreeDaysViews": 340
         },
@@ -156,7 +156,7 @@
             "imgUrl": "assets/images/channels4_profile.jpg",
             "title": "Current World Issues",
             "subTitle": "Recent developments around the globe",
-            "category": "В мире",
+            "category": "World",
             "allTimeViews": 1450,
             "lastTreeDaysViews": 370
         }

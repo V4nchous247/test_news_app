@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:test_news_app/index.dart';
 
 class TopicOfTheHourWidget extends StatelessWidget {
   const TopicOfTheHourWidget({
@@ -24,9 +24,9 @@ class TopicOfTheHourWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               color: Colors.white.withOpacity(0.6),
             ),
-            child: const Padding(
-              padding: EdgeInsets.all(5),
-              child: Text('topic of the hour'),
+            child: Padding(
+              padding: const EdgeInsets.all(5),
+              child: Text(AppLocalizations.of(context)!.topicOfTheHourBadgeName),
             ),
           ),
         ),

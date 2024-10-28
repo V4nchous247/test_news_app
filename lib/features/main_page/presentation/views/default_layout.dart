@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:test_news_app/index.dart';
 
@@ -21,9 +20,6 @@ class _DefaultLayoutState extends State<DefaultLayout> {
   List<String> _categories = [];
   final _filters = [];
 
-  static const String _popular = 'Популярное';
-  static const String _actual = 'Читают';
-
   @override
   void initState() {
     initCategories();
@@ -32,8 +28,8 @@ class _DefaultLayoutState extends State<DefaultLayout> {
 
   void initCategories() {
     _categories = [
-      _popular,
-      _actual,
+      'Popular',
+      'Hot',
       ...widget.allCategories,
     ];
   }
@@ -81,13 +77,13 @@ class _DefaultLayoutState extends State<DefaultLayout> {
                 if (_filters.isNotEmpty) {
                   _articles = widget.allArticles.where((article) => _filters.contains(article.category)).toList();
                 }
-                if (_filters.contains(_popular)) {
+                if (_filters.contains('Popular')) {
                   _articles = widget.allArticles;
                   final sortedArticles = _articles.where((article) => article.allTimeViews > 0).toList()
                     ..sort((a, b) => b.allTimeViews.compareTo(a.allTimeViews));
                   _articles = sortedArticles;
                 }
-                if (_filters.contains(_actual)) {
+                if (_filters.contains('Hot')) {
                   _articles = widget.allArticles;
                   final sortedArticles = _articles.where((article) => article.lastTreeDaysViews > 0).toList()
                     ..sort((a, b) => b.lastTreeDaysViews.compareTo(a.lastTreeDaysViews));
@@ -105,10 +101,10 @@ class _DefaultLayoutState extends State<DefaultLayout> {
                           separatorBuilder: (context, index) => const SizedBox(height: 15),
                         ),
                       )
-                    : const Center(
+                    : Center(
                         child: Text(
-                          'No articles in this category',
-                          style: TextStyle(
+                          AppLocalizations.of(context)!.emptyCategoryPlaceholder,
+                          style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.w600,
                           ),
