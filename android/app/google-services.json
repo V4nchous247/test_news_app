@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "284061411590",
+    "project_id": "thenewyorktimes-374a1",
+    "storage_bucket": "thenewyorktimes-374a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:284061411590:android:5fc6a9fd5d2b1d31cd9687",
+        "android_client_info": {
+          "package_name": "com.example.test_news_ap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_vds90Sa46WU7ov2leJV44D3-6Ssesjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
